@@ -1,0 +1,35 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.traveloka.com/en-id');
+  await page.getByTestId('product-pill-Car Rental').getByText('Car Rental').click();
+  await page.getByRole('heading', { name: 'Without Driver' }).click();
+  await page.getByTestId('rental-search-form-location-input').click();
+  await page.getByTestId('rental-search-form-location-input').fill('jakarta');
+  await page.getByRole('heading', { name: 'Jakarta', exact: true }).click();
+  await page.getByTestId('rental-search-form-date-input-start').click();
+  await page.locator('div:nth-child(28) > div > div > div:nth-child(2) > div:nth-child(2) > .css-901oao').first().click();
+  await page.getByTestId('rental-search-form-time-input-start').click();
+  await page.locator('div:nth-child(11) > .css-901oao').click();
+  await page.getByText('0', { exact: true }).nth(1).click();
+  await page.getByRole('button', { name: 'Done' }).click();
+  await page.getByTestId('rental-search-form-date-input-end').click();
+  await page.locator('div:nth-child(7) > div > div:nth-child(2) > div > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(31) > div > div > div:nth-child(2) > div:nth-child(2) > .css-901oao').first().click();
+  await page.getByTestId('rental-search-form-time-input-end').click();
+  await page.locator('div:nth-child(11) > .css-901oao').click();
+  await page.locator('div:nth-child(3) > div:nth-child(2) > div > div > div:nth-child(2) > .css-901oao').first().click();
+  await page.getByRole('button', { name: 'Done' }).click();
+  await page.getByTestId('rental-search-form-cta').click();
+  await page.locator('div:nth-child(4) > div > div:nth-child(2) > div:nth-child(3) > div:nth-child(3) > .css-18t94o4').click();
+  await page.locator('div').filter({ hasText: /^Rp 1\.255\.800 totalRp 1\.064\.440totalRp 255\.146 \/dayContinueContinue1 car\(s\) left$/ }).getByRole('button').click();
+  await page.getByRole('radio', { name: 'Rental Office' }).click();
+  await page.getByText('Rental Office').nth(2).click();
+  await page.locator('div:nth-child(2) > div > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > div:nth-child(2)').first().click();
+  await page.locator('div:nth-child(2) > div > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > div:nth-child(2)').first().click();
+  await page.locator('.css-1dbjc4n > div:nth-child(2) > div > div:nth-child(2) > div > div > div > div > div > div > div:nth-child(2)').click();
+  await page.locator('#RENTAL_DROPOFF_LOCATION').getByRole('radio', { name: 'Other Locations' }).click();
+  await page.locator('#RENTAL_DROPOFF_LOCATION').getByPlaceholder('Search location or address').click();
+  await page.locator('#RENTAL_DROPOFF_LOCATION').getByPlaceholder('Search location or address').fill('');
+  await page.locator('#RENTAL_DROPOFF_LOCATION').getByRole('heading', { name: 'Halim Perdanakusuma' }).click();
+  await page.getByRole('button', { name: 'Continue' }).first().click();
+});
